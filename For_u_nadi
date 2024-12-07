@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Journal</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4ecd8;
+            font-family: 'Georgia', serif;
+        }
+
+        .book {
+            width: 600px;
+            height: 400px;
+            background: #d3b691;
+            border: 2px solid #8b5e34;
+            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .pages {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+            position: absolute;
+        }
+
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #f7e6cf;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+            backface-visibility: hidden;
+            text-align: center;
+            color: #5a3921;
+            padding: 20px;
+            box-sizing: border-box;
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        .page:nth-child(odd) {
+            transform: rotateY(0deg);
+        }
+
+        .page:nth-child(even) {
+            transform: rotateY(180deg);
+        }
+
+        .page h1 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .intro {
+            font-style: italic;
+            font-size: 1.2em;
+        }
+
+        .btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #8b5e34;
+            color: #f4ecd8;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 5px;
+        }
+
+        .btn.prev {
+            left: 10px;
+        }
+
+        .btn.next {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="book">
+        <div class="pages">
+            <div class="page">
+                <h1>Welcome</h1>
+                <p class="intro">"Some stories are best told on pages that feel like they carry time."</p>
+            </div>
+            <div class="page">
+                <p>We started <span>November 11, 2024.</span><br>
+                That time, I was so bored, but then I found you. At first, I didn’t really feel like we’d have any connection kasi for me, you seemed so mature and ang hirap mong biruin. That’s why I was so quiet around you. Honestly, I have this habit na kapag may gusto yung tao,<br> 
+                I’d do the opposite<br>
+                that’s my bad side. <br>
+                Pero ayun, expect the unexpected.</p>
+            </div>
+            <div class="page">
+                <p>As time went on, our connection grew stronger.<br>
+                I started to feel more comfortable with you, to the point na I shared my whole life, even the worst parts of it.<br>
+                I can’t deny it<br>
+                ang galing mo talaga when it comes to building relationships.<br>
+                Fine<br>
+                panalo ka na<br>
+                Nakuha mo na loob ko</p>
+            </div>
+            <div class="page">
+                <p>Do you remember when I asked about your weaknesses?<br>
+                I was trying to convince myself na I shouldn’t like you.<br>
+                Pero sakakapilit ko, doon ko narealize<br>
+                <span>I like you.</span><br>
+                <span>I admire you.</span></p>
+            </div>
+            <div class="page">
+                <p>I see you as almost perfect. You have these qualities that make you so attractive, and I really admire that about you. I hope you don’t change and that you achieve all your dreams in life.<br>
+                Pero don’t get me wrong ha, I’m not expecting anything more than that. Happy crush lang, ganon. Hehe.</p>
+            </div>
+        </div>
+        <button class="btn prev" onclick="prevPage()">Previous</button>
+        <button class="btn next" onclick="nextPage()">Next</button>
+    </div>
+
+    <script>
+        const pages = document.querySelector('.pages');
+        let currentPage = 0;
+
+        function nextPage() {
+            if (currentPage < 4) {
+                currentPage++;
+                updateView();
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                updateView();
+            }
+        }
+
+        function updateView() {
+            const angle = -180 * currentPage;
+            pages.style.transform = `rotateY(${angle}deg)`;
+        }
+    </script>
+</body>
+</html>
